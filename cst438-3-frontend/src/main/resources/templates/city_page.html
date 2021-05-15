@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<head>
+<meta charset="ISO-8859-1">
+<title>City Information</title>
+</head>
+<body>
+<div class = "jumbotron">
+<h2> City </h2>
+ 
+ID: <span th:inline="text"> [[${cityInfo.city.getID()}]] </span> <br />
+Name: <span th:inline="text"> [[${cityInfo.country.getName()}]] </span> <br />
+Country Code: <span th:inline="text"> [[${cityInfo.country.getCode()}]] </span> <br />
+District: <span th:inline="text"> [[${cityInfo.city.getDistrict()}]] </span> <br />
+Population: <span th:inline="text"> [[${cityInfo.city.getPopulation()}]] </span> <br />
+Local Weather: <span th:inline="text"> [[${cityInfo.timeAndTemp.temp}]] F</span> <br />
+Local Time: <span th:inline="text"> [[${cityInfo.timeAndTemp.time}]] </span> <br /> <br />
+
+<p> Sign up now for a fabulous getaway for two to <span th:inline="text"> [[${cityInfo.city.getName()}]]</span>! </p> 
+<form action="/cities/reservation" method="post">
+<input type="hidden" id="city" name = "city" th:value = "${cityInfo.city.getName()}" />
+   
+   <label for="email"> Email: </label>
+   <input type="text" id="email" name="email" placeholder="youremail@email.com"> <br /> 
+   <label for="luxury"> Luxury $1000 </label>
+   <input type="radio" id="luxury" name="vacationLevel" value="luxury"> <br />
+   <label for="Very Good"> Very Good $500 </label>
+   <input type="radio" id="Very Good" name="vacationLevel" value="Very Good"> <br />
+   <label for="Good"> Good $350 </label> 
+   <input type="radio" id="Good" name="vacationLevel" value="Good"> <br />
+   
+   <input type="submit" value="Submit">
+</form>
+
+</div>
+</body>
+</html>
