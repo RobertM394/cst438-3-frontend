@@ -24,6 +24,11 @@ public class CityController {
 		
 		CityInfo cityInfo = cityService.getCityInfo(cityName);
 		
+		if (cityInfo == null) {
+			model.addAttribute("invalidCityMessage", cityName + " not found!");
+			return "error_page";
+		}
+		
 		double tempFahrenheit = Math.round((cityInfo.timeAndTemp.temp - 273.15) * 9.0/5.0 + 32.0);
 		cityInfo.timeAndTemp.temp = tempFahrenheit;
 		model.addAttribute("cityInfo", cityInfo);

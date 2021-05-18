@@ -37,14 +37,22 @@ public class CityService {
 
 		//build CityInfo object
 		List<City> cities = cityRepository.findByName(cityName);
+		
+		//referenced Module 2 solution 
+		if (cities.size() > 0) {
 		City city = cities.get(0);
-
+		
 		Country country = countryRepository.findByCode(city.getCountry().getCode()); 
 		TimeAndTemp timeAndTemp = weatherService.getTimeAndTemp(cityName);
 
 		CityInfo cityInfo = new CityInfo(city, country, timeAndTemp);
 		
 		return cityInfo;
+	}
+		
+		else {
+			return null;
+		}
 	}
 	
 	//enqueue a message to RabbitMQ exchange
