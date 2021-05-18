@@ -50,11 +50,11 @@ public class CityService {
 	//enqueue a message to RabbitMQ exchange
 	public void requestReservation(
 			String cityName,
-			String level,
+			String vacationLevel,
 			String email) {
 		
 		String msg = "{\"cityName\": \"" + cityName + 
-				"\" \"level\": \"" + level +
+				"\" \"vacationLevel\": \"" + vacationLevel +
 				"\" \"email\": \"" + email + "\"}";
 		System.out.println("Sending message:" + msg);
 		rabbitTemplate.convertSendAndReceive(
